@@ -26,12 +26,7 @@ then
     fi
 elif [ "$SPEC_OS" = "linux" ]
 then
-
-
+    echo "Linux support coming soon"
 fi
 
-export SPEC_OS=windows
-export SPEC_PASS='(b=pnlMGU!MUbepR(hoHStUh8L;Fcs&R'
-export SPEC_PORT=5986
-export SPEC_HOST_NAME=34.204.75.248  
-export SPEC_USER=Administrator
+

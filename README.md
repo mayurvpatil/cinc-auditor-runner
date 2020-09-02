@@ -28,11 +28,11 @@ gem list
 # windows
 
 ```
-SPEC_OS = linux/windows
-SPEC_PASS = Server password
-SPEC_PORT = Server connection port
-SPEC_HOST_NAME = Server IP 
-SPEC_USER = Server Username
+SPEC_OS=linux/windows
+SPEC_PASS=Server password
+SPEC_PORT=Server connection port
+SPEC_HOST_NAME=Server IP 
+SPEC_USER=Server Username
 ```
 
 ### Windows server prerequisite
