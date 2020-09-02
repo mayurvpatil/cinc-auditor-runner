@@ -1,0 +1,20 @@
+services:
+ - crond            # CronJob Deomen service
+ - getty            # Getty on tty1
+ - dbus             # D-Bus System Message Bus
+ - ntpd             # Network Time Service
+ - rhel-domainname  # Exited  Read and set NIS domainname from /etc/sysconfig/network
+ - rhel-readonly    # Configure read-only root support
+ - rsyslog          # System Logging Service
+ - serial-getty     # Serial Getty on ttyS0
+ - sshd             # OpenSSH server daemon
+ - systemd-journald # Journal Service
+ - systemd-logind   # Login Service
+ - systemd-tmpfiles-setup #  Create Volatile Files and Directories
+ - systemd-udevd    # udev Kernel Device Manager
+ - tuned            # Dynamic System Tuning Daemon
+ - atd              # Job spooling tools
+ - auditd           # Security Auditing Service
+ - firewalld        # firewalld - dynamic firewall daemon
+ - jexec            # LSB: Supports the direct execution of binary formats.
+ - nessusagent      # The Nessus Client Agent
