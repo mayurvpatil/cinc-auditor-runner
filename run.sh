@@ -19,8 +19,8 @@ then
         echo ${PORT}
         echo ${SPEC_HOST_NAME} 
         echo ${SPEC_USER}
-        inspec exec  controls/windows_spec.rb -b "winrm" --host ${SPEC_HOST_NAME} --port $PORT --user "${SPEC_USER}" --password $(printf "%s" ${SPEC_PASS}) --ssl --self-signed  --format html >> report/result.html
-        inspec exec  controls/windows_spec.rb -b "winrm" --host ${SPEC_HOST_NAME} --port $PORT --user "${SPEC_USER}" --password $(printf "%s" ${SPEC_PASS}) --ssl --self-signed  --format json-rspec >> report/result.json
+        cinc-auditor exec  controls/windows_spec.rb -b "winrm" --host ${SPEC_HOST_NAME} --port $PORT --user "${SPEC_USER}" --password $(printf "%s" ${SPEC_PASS}) --ssl --self-signed  --reporter  html >> report/result.html
+        cinc-auditor exec  controls/windows_spec.rb -b "winrm" --host ${SPEC_HOST_NAME} --port $PORT --user "${SPEC_USER}" --password $(printf "%s" ${SPEC_PASS}) --ssl --self-signed  --reporter  json >> report/result.json
     else 
         echo "Windows call with key."
     fi
