@@ -1,39 +1,30 @@
+# SurverSpec Runner
 
-# Installation
+- Basic code to execute server spec sample code for linux and windows machines.
 
-## Ruby dependency
+# Windows
+
+ - Run `windowsInitScript.sh` on windows server to open winrm ports
+ - Expose following environment variables before execution executions
+
+
 ```bash
-sudo apt-add-repository ppa:brightbox/ruby-ng
-sudo apt-get update
-sudo apt-get install ruby2.2
-sudo apt-get install ruby2.2-dev
-
-gem environment
-```
-### Build-Essential Package  
-
-build-essential is a package which contains stuff needed for building software. (make, gcc ..)
-```bash
-sudo apt-get install build-essential
-```
-
-#### Inspec Gem installation
-```bash
-sudo gem install inspec
-sudo gem install inspec-bin
-
-gem list
-```
-
-# windows
-
-```
 SPEC_OS=linux/windows
 SPEC_PASS=Server password
 SPEC_PORT=Server connection port
 SPEC_HOST_NAME=Server IP 
 SPEC_USER=Server Username
 ```
+ - Execute  `sh run.sh`
 
-### Windows server prerequisite
-run windowsInitScript.sh to open winrm port on windows server
+
+### ToDos
+
+- [x] Implementaion of inspec sample code for linux 
+- [ ] Integrate linux call in run.sh 
+- [ ] Fix inspec profile
+- [ ] Add support for cinc-auditor in run.sh
+- [ ] Add support for SPEC_TOOL, to run code using inspc or cinc-auditor
+- [ ] Integrate inspec and cinc-auditor code through rub.sh
+
+

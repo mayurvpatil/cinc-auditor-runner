@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
 
-gem 'inspec'
+gem 'inspec', '4.22.22'
 gem 'mixlib-shellout', '~> 2.2.0'
-

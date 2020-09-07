@@ -24,17 +24,6 @@ control 'tmp-1.0' do                        # A unique ID for this control
   end
 end
 
-=begin
-# Check for daemon services
-describe command('pgrep crond') do
-  its('stdout') { should_not eq "" }
-end
-
-describe command('pgrep getty') do
-  its('stdout') { should_not eq "" }
-end
-=end
-
 services = YAML.load_file(File.join(File.dirname(__FILE__), '../files/services.yml'))
 services["services"].each do |s|
   describe command('sudo systemctl show '+s+' --no-page | grep ActiveState | cut -d "=" -f2') do
