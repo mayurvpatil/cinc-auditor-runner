@@ -4,29 +4,29 @@ set -xv
 bundle install &&
 #inspec vendor --overwrite
 
-if [ "$SPEC_OS" = "windows" ]
+if [ -n $INSPEC_PASSWORD ]
 then
-    if [ -n $SPEC_PASS ]
-    then
-        echo "Windows call with password"
-        if [ -n $SPEC_PORT ]
-            then PORT=${SPEC_PORT}
-        else
-            PORT=5985
-        fi
-        echo ${SPEC_OS}
-        echo $(printf "%s" ${SPEC_PASS})
-        echo ${PORT}
-        echo ${SPEC_HOST_NAME} 
-        echo ${SPEC_USER}
-        cinc-auditor exec  controls/windows_spec.rb -b "winrm" --host ${INSPEC_IP} --port $PORT --user "${INSPEC_USER}" --password $(printf "%s" ${INSPEC_PASSWORD}) --ssl --self-signed  --reporter  html >> report/result.html
-        cinc-auditor exec  controls/windows_spec.rb -b "winrm" --host ${INSPEC_IP} --port $PORT --user "${INSPEC_USER}" --password $(printf "%s" ${INSPEC_PASSWORD}) --ssl --self-signed  --reporter  json >> report/result.json
-    else 
-        echo "Windows call with key."
+    CRED_TYPE="--password"
+else
+    CRED_TYPE="-i" # key
+
+if [ "$INSPEC_OS" = "windows" ]
+then
+    echo " Running cinc-auditor for windows server ..."
+    if [ -n $INSPEC_PORT ]
+        then PORT=${INSPEC_PORT}
+    else
+        PORT=5985
     fi
+
+    cinc-auditor exec  controls/windows_spec.rb -b "winrm" --host ${INSPEC_IP} --port $PORT --user "${INSPEC_USER}" $CRED_TYPE $(printf "%s" ${INSPEC_PASSWORD}) --ssl --self-signed  --reporter  html >> report/result.html
+    cinc-auditor exec  controls/windows_spec.rb -b "winrm" --host ${INSPEC_IP} --port $PORT --user "${INSPEC_USER}" $CRED_TYPE $(printf "%s" ${INSPEC_PASSWORD}) --ssl --self-signed  --reporter  json >> report/result.json
+
 elif [ "$SPEC_OS" = "linux" ]
 then
-    echo "Linux support coming soon"
+    echo " Running cinc-auditor for windows server ..."
+    cinc-auditor exec  controls/linux_spec.rb -b "ssh" --host ${INSPEC_IP} --port 22 --user "${INSPEC_USER}" $CRED_TYPE $(printf "%s" ${INSPEC_PASSWORD}) --ssl --self-signed  --reporter  html >> report/result.html
+    cinc-auditor exec  controls/linux_spec.rb -b "ssh" --host ${INSPEC_IP} --port 22 --user "${INSPEC_USER}" $CRED_TYPE $(printf "%s" ${INSPEC_PASSWORD}) --ssl --self-signed  --reporter  json >> report/result.json
 fi
 
 
