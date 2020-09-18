@@ -11,7 +11,7 @@ then
 
 else
     CRED_TYPE="-i "
-    CRED_VALUE=$(printf "%s" ${$INSPEC_SSH_KEY})
+    CRED_VALUE=$(printf "%s" ${INSPEC_SSH_KEY})
 fi
 
 echo "----------------------------"
