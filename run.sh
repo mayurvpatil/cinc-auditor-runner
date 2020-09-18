@@ -32,7 +32,7 @@ then
     cinc-auditor exec  controls/windows_spec.rb -b "winrm" --host ${INSPEC_IP} --port $PORT --user "${INSPEC_USER}" $CRED_TYPE $CRED_VALUE --ssl --self-signed  --reporter  html >> report/result.html
     cinc-auditor exec  controls/windows_spec.rb -b "winrm" --host ${INSPEC_IP} --port $PORT --user "${INSPEC_USER}" $CRED_TYPE $CRED_VALUE --ssl --self-signed  --reporter  json >> report/result.json
 
-elif [ "$SPEC_OS" = "linux" ]
+elif [ "$INSPEC_OS" = "linux" ]
 then
     echo " Running cinc-auditor for Linux server ..."
     cinc-auditor exec  controls/linux_spec.rb -t ssh://$INSPEC_USER@$INSPEC_IP $CRED_TYPE $CRED_VALUE --ssl --self-signed  --reporter  html >> report/result.html
