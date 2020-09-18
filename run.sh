@@ -35,8 +35,8 @@ then
 elif [ "$SPEC_OS" = "linux" ]
 then
     echo " Running cinc-auditor for Linux server ..."
-    cinc-auditor exec  controls/linux_spec.rb -b "ssh" -t ssh://$INSPEC_USER@$INSPEC_IP $CRED_TYPE $CRED_VALUE --ssl --self-signed  --reporter  html >> report/result.html
-    cinc-auditor exec  controls/linux_spec.rb -b "ssh" -t ssh://$INSPEC_USER@$INSPEC_IP $CRED_TYPE  $CRED_VALUE --ssl --self-signed  --reporter  json >> report/result.json
+    cinc-auditor exec  controls/linux_spec.rb -t ssh://$INSPEC_USER@$INSPEC_IP $CRED_TYPE $CRED_VALUE --ssl --self-signed  --reporter  html >> report/result.html
+    cinc-auditor exec  controls/linux_spec.rb -t ssh://$INSPEC_USER@$INSPEC_IP $CRED_TYPE  $CRED_VALUE --ssl --self-signed  --reporter  json >> report/result.json
 fi
 
 
