@@ -9,6 +9,7 @@ then
     CRED_TYPE="--password"
 else
     CRED_TYPE="-i" # key
+fi
 
 if [ "$INSPEC_OS" = "windows" ]
 then
