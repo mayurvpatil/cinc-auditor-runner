@@ -6,10 +6,19 @@ bundle install &&
 
 if [ -n "$INSPEC_PASSWORD" ]
 then
-    CRED="--password " $(printf "%s" ${INSPEC_PASSWORD})
+    CRED_TYPE="--password"
+    CRED_VALUE=$(printf "%s" ${INSPEC_PASSWORD})
+
 else
-    CRED="-i " $INSPEC_SSH_KEY 
+    CRED_TYPE="-i "
+    CRED_VALUE=$(printf "%s" ${$INSPEC_SSH_KEY})
 fi
+
+echo "----------------------------"
+echo $CRED_TYPE 
+echo "**********"
+echo $CRED_VALUE
+echo "----------------------------"
 
 if [ "$INSPEC_OS" = "windows" ]
 then
@@ -20,14 +29,14 @@ then
         PORT=5985
     fi
 
-    cinc-auditor exec  controls/windows_spec.rb -b "winrm" --host ${INSPEC_IP} --port $PORT --user "${INSPEC_USER}" $CRED  --ssl --self-signed  --reporter  html >> report/result.html
-    cinc-auditor exec  controls/windows_spec.rb -b "winrm" --host ${INSPEC_IP} --port $PORT --user "${INSPEC_USER}" $CRED  --ssl --self-signed  --reporter  json >> report/result.json
+    cinc-auditor exec  controls/windows_spec.rb -b "winrm" --host ${INSPEC_IP} --port $PORT --user "${INSPEC_USER}" $CRED_TYPE $CRED_VALUE --ssl --self-signed  --reporter  html >> report/result.html
+    cinc-auditor exec  controls/windows_spec.rb -b "winrm" --host ${INSPEC_IP} --port $PORT --user "${INSPEC_USER}" $CRED_TYPE $CRED_VALUE --ssl --self-signed  --reporter  json >> report/result.json
 
 elif [ "$SPEC_OS" = "linux" ]
 then
     echo " Running cinc-auditor for windows server ..."
-    cinc-auditor exec  controls/linux_spec.rb -b "ssh" --host ${INSPEC_IP} --port 22 --user "${INSPEC_USER}" $CRED --ssl --self-signed  --reporter  html >> report/result.html
-    cinc-auditor exec  controls/linux_spec.rb -b "ssh" --host ${INSPEC_IP} --port 22 --user "${INSPEC_USER}" $CRED --ssl --self-signed  --reporter  json >> report/result.json
+    cinc-auditor exec  controls/linux_spec.rb -b "ssh" --host ${INSPEC_IP} --port 22 --user "${INSPEC_USER}" $CRED_TYPE  $CRED_VALUE --ssl --self-signed  --reporter  html >> report/result.html
+    cinc-auditor exec  controls/linux_spec.rb -b "ssh" --host ${INSPEC_IP} --port 22 --user "${INSPEC_USER}" $CRED_TYPE  $CRED_VALUE --ssl --self-signed  --reporter  json >> report/result.json
 fi
 
 
